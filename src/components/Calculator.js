@@ -1,44 +1,60 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import '../App.css';
+import calculate from '../logic/calculate';
 
 class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      total: null,
+      next: null,
+    };
+    this.onClickHandler = this.onClickHandler.bind(this);
+  }
+
+  onClickHandler(e) {
+    this.setState((state) => calculate(state, e.target.innerHTML));
+  }
+
   render() {
+    const { total, next } = this.state;
+
     return (
       <div className="calculator-container">
         <div className="row">
           <div className="display">
-            <div className="input">0</div>
+            <div className="input">{next || total || '0'}</div>
           </div>
         </div>
         <div className="row">
-          <div className="operation">AC</div>
-          <div className="operation">+/-</div>
-          <div className="operation">%</div>
-          <div className="operation right">÷</div>
+          <button type="button" onClick={this.onClickHandler} className="operation">AC</button>
+          <button type="button" onClick={this.onClickHandler} className="operation">+/-</button>
+          <button type="button" onClick={this.onClickHandler} className="operation">%</button>
+          <button type="button" onClick={this.onClickHandler} className="operation right">÷</button>
         </div>
         <div className="row">
-          <div className="number">7</div>
-          <div className="number">8</div>
-          <div className="number">9</div>
-          <div className="operation right">X</div>
+          <button type="button" onClick={this.onClickHandler} className="number">7</button>
+          <button type="button" onClick={this.onClickHandler} className="number">8</button>
+          <button type="button" onClick={this.onClickHandler} className="number">9</button>
+          <button type="button" onClick={this.onClickHandler} className="operation right">x</button>
         </div>
         <div className="row">
-          <div className="number">4</div>
-          <div className="number">5</div>
-          <div className="number">6</div>
-          <div className="operation right">-</div>
+          <button type="button" onClick={this.onClickHandler} className="number">4</button>
+          <button type="button" onClick={this.onClickHandler} className="number">5</button>
+          <button type="button" onClick={this.onClickHandler} className="number">6</button>
+          <button type="button" onClick={this.onClickHandler} className="operation right">-</button>
         </div>
         <div className="row">
-          <div className="number">1</div>
-          <div className="number">2</div>
-          <div className="number">3</div>
-          <div className="operation right">+</div>
+          <button type="button" onClick={this.onClickHandler} className="number">1</button>
+          <button type="button" onClick={this.onClickHandler} className="number">2</button>
+          <button type="button" onClick={this.onClickHandler} className="number">3</button>
+          <button type="button" onClick={this.onClickHandler} className="operation right">+</button>
         </div>
         <div className="row bottom">
-          <div className="number zero">0</div>
-          <div className="operation">.</div>
-          <div className="operation right">=</div>
+          <button type="button" onClick={this.onClickHandler} className="number zero">0</button>
+          <button type="button" onClick={this.onClickHandler} className="operation">.</button>
+          <button type="button" onClick={this.onClickHandler} className="operation right">=</button>
         </div>
       </div>
     );
