@@ -2,6 +2,7 @@
 import React from 'react';
 import '../App.css';
 import calculate from '../logic/calculate';
+import Button from './Button';
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -19,6 +20,42 @@ class Calculator extends React.Component {
 
   render() {
     const { total, next } = this.state;
+    const utilLabels = ['AC', '+/-', '%'];
+    const digitLabels = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, '.'];
+    const operatorLabels = ['÷', 'x', '-', '+', '='];
+
+    const utils = utilLabels.map(
+      (utilLabel) => (
+        <Button
+          key={`${utilLabel}`}
+          cssClass="operation"
+          action={this.onClickHandler}
+          label={utilLabel}
+        />
+      ),
+    );
+
+    const digits = digitLabels.map(
+      (digitLabel) => (
+        <Button
+          key={`${digitLabel}`}
+          cssClass={digitLabel === 0 ? 'number zero' : 'number'}
+          action={this.onClickHandler}
+          label={digitLabel}
+        />
+      ),
+    );
+
+    const operators = operatorLabels.map(
+      (operatorLabel) => (
+        <Button
+          key={`${operatorLabel}`}
+          cssClass="operation right"
+          action={this.onClickHandler}
+          label={operatorLabel}
+        />
+      ),
+    );
 
     return (
       <div className="calculator-container">
@@ -28,33 +65,31 @@ class Calculator extends React.Component {
           </div>
         </div>
         <div className="row">
-          <button type="button" onClick={this.onClickHandler} className="operation">AC</button>
-          <button type="button" onClick={this.onClickHandler} className="operation">+/-</button>
-          <button type="button" onClick={this.onClickHandler} className="operation">%</button>
-          <button type="button" onClick={this.onClickHandler} className="operation right">÷</button>
+          {utils}
+          {operators[0]}
         </div>
         <div className="row">
-          <button type="button" onClick={this.onClickHandler} className="number">7</button>
-          <button type="button" onClick={this.onClickHandler} className="number">8</button>
-          <button type="button" onClick={this.onClickHandler} className="number">9</button>
-          <button type="button" onClick={this.onClickHandler} className="operation right">x</button>
+          {digits[0]}
+          {digits[1]}
+          {digits[2]}
+          {operators[1]}
         </div>
         <div className="row">
-          <button type="button" onClick={this.onClickHandler} className="number">4</button>
-          <button type="button" onClick={this.onClickHandler} className="number">5</button>
-          <button type="button" onClick={this.onClickHandler} className="number">6</button>
-          <button type="button" onClick={this.onClickHandler} className="operation right">-</button>
+          {digits[3]}
+          {digits[4]}
+          {digits[5]}
+          {operators[2]}
         </div>
         <div className="row">
-          <button type="button" onClick={this.onClickHandler} className="number">1</button>
-          <button type="button" onClick={this.onClickHandler} className="number">2</button>
-          <button type="button" onClick={this.onClickHandler} className="number">3</button>
-          <button type="button" onClick={this.onClickHandler} className="operation right">+</button>
+          {digits[6]}
+          {digits[7]}
+          {digits[8]}
+          {operators[3]}
         </div>
         <div className="row bottom">
-          <button type="button" onClick={this.onClickHandler} className="number zero">0</button>
-          <button type="button" onClick={this.onClickHandler} className="operation">.</button>
-          <button type="button" onClick={this.onClickHandler} className="operation right">=</button>
+          {digits[9]}
+          {digits[10]}
+          {operators[4]}
         </div>
       </div>
     );
