@@ -5,6 +5,10 @@
   list-style-type: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 .calculator-container {
   width: 50%;
   margin: 50% auto;
@@ -41,8 +45,17 @@
   font-size: 12px;
 }
 
+.operation:hover,
+.number:hover {
+  background-color: #e0e0e098;
+}
+
 .right {
   background-color: #f5913e;
+}
+
+.right:hover {
+  background-color: #f5903eb9;
 }
 
 .zero {
