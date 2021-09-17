@@ -8,6 +8,9 @@ function Calculator() {
   const [state, setState] = useState({ total: null, next: null });
 
   const onClickHandler = (e) => {
+    if (!state.total && !state.next && e.target.classList[0] === 'operation') {
+      return;
+    }
     setState((state) => calculate(state, e.target.innerHTML));
   };
 
